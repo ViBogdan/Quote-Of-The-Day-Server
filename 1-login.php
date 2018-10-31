@@ -1,5 +1,5 @@
 <?php
-// Start the PHP session first
+// Start the PHP session first:
 session_start();
 
 ?>
