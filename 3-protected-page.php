@@ -12,7 +12,7 @@ if(isset($_SESSION['isLoggedIn'])) {
 
 } else {
 
-  header('Location: 1-login.php?error=isBlocked');  //if the isLoggedIn is not set, it means that they are trying to acces content without loggin in. We thus redirect them back to
+  header('Location: index.php?error=isBlocked');  //if the isLoggedIn is not set, it means that they are trying to acces content without loggin in. We thus redirect them back to
                                                     //the login page with isBlock set to true, where he is prompted to log in
 }
 
@@ -30,7 +30,7 @@ if(isset($_SESSION['isLoggedIn'])) {
 
 <nav>
     <ul>
-    <li><a href="1-login.php">Log in</a></li>
+    <li><a href="index.php">Log in</a></li>
     <li><a href="3-protected-page.php">Get Quote</a></li>
     <li><a href="4-add-user.php">Register</a></li>
     <li><a href="6-logout.php">Log Out</a></li>

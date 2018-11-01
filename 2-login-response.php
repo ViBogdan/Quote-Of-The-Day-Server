@@ -44,7 +44,7 @@ while ($aUser = $sqlQueryResult->fetch_assoc()) { //to a chosen variable ($aUser
 	    	header('Location: 3-protected-page.php');  //header == redirect to page; if credentials are ok, we send the user to the protected content page, with isLoggedIn = true
 	    
 	    } else {
-	    	header('Location: 1-login.php?error=badPassword&userName='.$userName);
+	    	header('Location: index.php?error=badPassword&userName='.$userName);
 	    	$noOfHits++;
 	    };											
 	};	
@@ -52,7 +52,7 @@ while ($aUser = $sqlQueryResult->fetch_assoc()) { //to a chosen variable ($aUser
 
 	
 if ($noOfHits == 0) { //if we haven't found any hits in the DB it means the crdentials are wrong
-	header('Location: 1-login.php?error=badUserCredentials');//if credentials are not ok, we send him back to the login page where he is prompted to log in due to badUserCredentials = true
+	header('Location: index.php?error=badUserCredentials');//if credentials are not ok, we send him back to the login page where he is prompted to log in due to badUserCredentials = true
 };
 
 $connection->close(); //we don't need to connect to the server anymore	

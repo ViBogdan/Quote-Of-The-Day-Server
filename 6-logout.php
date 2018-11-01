@@ -15,7 +15,7 @@ session_start();
 
 <nav>
     <ul>
-    <li><a href="1-login.php">Log in</a></li>
+    <li><a href="index.php">Log in</a></li>
     <li><a href="3-protected-page.php">Get Quote</a></li>
     <li><a href="4-add-user.php">Register</a></li>
     <li><a href="6-logout.php">Log Out</a></li>
