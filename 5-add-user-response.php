@@ -58,7 +58,8 @@ if ($checkRepeatUser == 0) {
 
 		if(!empty($newPass) && $newPass == $newRePass) {
 
-			$sqlQueryDetails = "INSERT INTO members (user, password) VALUES ('$newUserName', '$newPass')";
+			$hashedUserPass = password_hash($newPass, PASSWORD_DEFAULT);
+			$sqlQueryDetails = "INSERT INTO members (user, password) VALUES ('$newUserName', '$hashedUserPass')";
 			$connection->query($sqlQueryDetails);
 		
 			$_SESSION['isLoggedIn'] = true;
