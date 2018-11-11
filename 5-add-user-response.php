@@ -58,7 +58,7 @@ if ($checkRepeatUser == 0) {
 
 		if(!empty($newPass) && $newPass == $newRePass) {
 
-			$hashedUserPass = password_hash($newPass, PASSWORD_DEFAULT);
+			$hashedUserPass = password_hash($newPass, PASSWORD_DEFAULT); //we hash the password before inserting it into the database
 			$sqlQueryDetails = "INSERT INTO members (user, password) VALUES ('$newUserName', '$hashedUserPass')";
 			$connection->query($sqlQueryDetails);
 		
