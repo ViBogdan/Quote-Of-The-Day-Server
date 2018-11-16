@@ -46,7 +46,7 @@ while ($aUser = $sqlQueryResult->fetch_assoc()) { //to a chosen variable ($aUser
 	    	header('Location: 3-protected-page.php');  //header == redirect to page; if credentials are ok, we send the user to the protected content page, with isLoggedIn = true
 	    
 	    } else {
-	    	header('Location: index.php?error=badPassword&userName='.$userName);
+	    	header('Location: index.php?error=badPassword&userName='.$userName);  
 	    	$noOfHits++;
 	    };											
 	};	
