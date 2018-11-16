@@ -5,11 +5,18 @@ session_start();
 
 //****************************************Connecting to Database****************************************
 
+// ClearDB server us-cdbr-iron-east-01.cleardb.net
+
 //defining my server connection elements (we can name the variables whatevere we want)
-$server = "db4free.net"; 
-$serverUser = "vibogdan";
-$serverPass = "Formula.1";
-$dbName = "quoteoftheday";
+//$server = "db4free.net"; 
+//$serverUser = "vibogdan";
+//$serverPass = "Formula.1";
+//$dbName = "quoteoftheday";
+
+$server = "blonze2d5mrbmcgf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; 
+$serverUser = "iykvnj95l595htba";
+$serverPass = "q14jj0odjyr8if3f";
+$dbName = "qszbwoudqs1jwfu5";
 
 
 //connecting to the server with the details define above
