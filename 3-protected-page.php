@@ -82,5 +82,10 @@ if(isset($_SESSION['isLoggedIn'])) {
 
   </main>
 
+  	<p>Contribute with a quote:</p>
+  	<form action="3.1-add-quote.php" method="POST">
+  		<input type="text" placeholder="Contribute with a quote here...">
+  		<button type="submit" class="mySubmit">Add quote</button>
+
 	</body>
 </html>
