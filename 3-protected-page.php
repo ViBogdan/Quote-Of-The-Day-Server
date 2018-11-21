@@ -76,14 +76,35 @@ if(isset($_SESSION['isLoggedIn'])) {
 		};
 
 		$displayQuote = $quotes[array_rand($quotes)]; //we chose a quote to display as random from our quotes array
-		echo "<p> $displayQuote </p>"
+		echo "<p class='centered'> $displayQuote </p><br><br>";
+
+		$connection->close();
 
     ?>
 
-  	<form action="3.1-add-quote.php" method="POST" id="newQuote">
-  		<textarea type="text" placeholder="Contribute with a quote here..." form="newQuote"></textarea>
-  		<button type="submit" class="mySubmit">Add quote</button>
+    <?php
 
+    if (isset($_GET['userQuoteAdded'])) {
+
+    	echo "<p>Your quote was added to the database!</p>";
+
+    } else {
+
+    $addForm = <<<ADDFORM
+
+  	<form action="3.1-add-quote.php" method="POST" id="addQuote">
+  		<textarea type="text" placeholder="Contribute with a quote here..." form="addQuote" class="addQuote" name="newQuote"></textarea>
+  		<br>
+  		<button type="submit" class="mySubmit">Add quote</button>
+  	</form>	
+
+ADDFORM;
+
+	echo $addForm;
+
+  	};
+
+  	?>
   </main>
 
 

@@ -6,7 +6,7 @@ main, nav {display: block;}
 
 main {
 width: 80%;  
-height: 600px;
+height: 450px;
 background-color: rgba(155, 168, 51, 0.25);
 margin-right: auto;
 margin-left: auto;
@@ -124,12 +124,10 @@ form .mySubmit {
 }
 
 .centered {
-  position: fixed;
   background-color: #F0FFFF;
-  top: 50%;
-  left: 50%;
+/*  top: 50%;
+  left: 50%;*/
   /* bring your own prefixes */
-  transform: translate(-50%, -50%);
 }
 
 .warning {
@@ -142,5 +140,10 @@ form .mySubmit {
   font-size: 1.4em;
   font-weight: 900;
   color: #FF4500;
+}
+
+.addQuote{
+  height: 100px;
+  width: 300px;
 }
 
