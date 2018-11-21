@@ -19,7 +19,7 @@
 		};
 //***************************************************************************************
 
-$newQuote = $_POST['newQuote'];
+$newQuote = mysqli_real_escape_string($connection, $_POST['newQuote']);
 
 $queryDetails = "INSERT INTO quotes (quote) VALUES ('$newQuote')";
 $connection->query($queryDetails);
