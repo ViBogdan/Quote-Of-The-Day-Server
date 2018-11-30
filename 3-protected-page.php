@@ -41,8 +41,6 @@ if(isset($_SESSION['isLoggedIn'])) {
 
   <main>
 
-    <h2>The quote of the day is: </h2>
-
     <?php 
 
 //*********************************Connecting to DB**************************************
@@ -64,6 +62,36 @@ if(isset($_SESSION['isLoggedIn'])) {
 		};
 //***************************************************************************************
 
+    $searchAuthor = <<<SEARCHAUTHOR
+
+  	<form action="3.2-search-quote.php" method="POST">
+  		<input type="text" placeholder="Search quote hint here..." name="searchElement">
+  		<button type="submit" class="mySubmit">Search</button>
+  	</form>	
+
+SEARCHAUTHOR;
+
+		// Selecting by random the quote from our existing quote DB:
+
+		if (isset($_GET["foundQuote"]) && $_GET["foundQuote"] == "true") {
+
+			echo "<p>We found these:</p>";
+
+			foreach($_SESSION['quotes_searched'] as $quoteSearched) {
+
+				echo "<p class='centered'> $quoteSearched </p><br>";
+
+			};
+
+			echo $searchAuthor;
+
+		} elseif (isset($_GET["foundQuote"]) && $_GET["foundQuote"] == "false") {
+
+			echo "<p>Unfortunately we did not find any quotes based on your search :( Maybe you can contribute with one :)</p>";
+			echo $searchAuthor;
+
+		} else {
+
 		$sqlQueryDetails = "SELECT * FROM quotes"; //selecting everything from quotes db
 		$sqlQueryResult = $connection->query($sqlQueryDetails);
 
@@ -76,13 +104,21 @@ if(isset($_SESSION['isLoggedIn'])) {
 		};
 
 		$displayQuote = $quotes[array_rand($quotes)]; //we chose a quote to display as random from our quotes array
-		echo "<p class='centered'> $displayQuote </p><br><br>";
+		echo "<h2>The quote of the day is: </h2>";
+		echo "<p class='centered'> $displayQuote </p>";
+		echo $searchAuthor;
 
 		$connection->close();
 
+		};
+
     ?>
 
+
+
     <?php
+
+    // Generating a form where the user can contribute with a quote to the existing DB
 
     if (isset($_GET['userQuoteAdded'])) {
 
@@ -93,7 +129,7 @@ if(isset($_SESSION['isLoggedIn'])) {
     $addForm = <<<ADDFORM
 
   	<form action="3.1-add-quote.php" method="POST" id="addQuote">
-  		<textarea type="text" placeholder="Contribute with a quote here..." form="addQuote" class="addQuote" name="newQuote"></textarea>
+  		<textarea type="text" placeholder='Contribute with a quote here. Should look like: "Quote" -- Author' form="addQuote" class="addQuote" name="newQuote"></textarea>
   		<br>
   		<button type="submit" class="mySubmit">Add quote</button>
   	</form>	
@@ -105,6 +141,7 @@ ADDFORM;
   	};
 
   	?>
+  	
   </main>
 
 

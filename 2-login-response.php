@@ -29,15 +29,20 @@ if ($connection->connect_error) {
 
 //****************************************************************************************************
 
-
 //selecting elements that I am interested in (in our case the entire DB with user names and their passwords)
 $sqlQueryDetails = "SELECT * FROM members";
 $sqlQueryResult = $connection->query($sqlQueryDetails);
+$sqlResultNumRows = $sqlQueryResult->num_rows; //with this method you can find and store the number of results returned from the DB after the query
 
-
+//procedural:
 $userName = mysqli_real_escape_string($connection, $_POST["userName"]); //mysqli_real_escape_string($connection, ) around our superglobal varible will assure that what is written
-$userPass = mysqli_real_escape_string($connection, $_POST["password"]);	//in the field is text and not code whoch could cause code injection in the DB
+$userPass = mysqli_real_escape_string($connection, $_POST["password"]);	//in the field is text and not code which could cause code injection in the DB
 $noOfHits = 0;
+
+//OOP:
+// $userName = $connection->real_escape_string($_POST["userName"]);
+// $userPass = $connection->real_escape_string($_POST["password"]);
+// $noOfHits = 0;
 
 while ($aUser = $sqlQueryResult->fetch_assoc()) { //to a chosen variable ($aUser in our case) we assign an associative array containing all details of a user
 
@@ -61,6 +66,7 @@ while ($aUser = $sqlQueryResult->fetch_assoc()) { //to a chosen variable ($aUser
 if ($noOfHits == 0) { //if we haven't found any hits in the DB it means the crdentials are wrong
 	header('Location: index.php?error=badUserCredentials');//if credentials are not ok, we send him back to the login page where he is prompted to log in due to badUserCredentials = true
 };
+
 
 $connection->close(); //we don't need to connect to the server anymore	
 

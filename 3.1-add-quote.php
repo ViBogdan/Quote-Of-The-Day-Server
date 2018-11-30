@@ -27,3 +27,5 @@ $connection->query($queryDetails);
 $connection->close();
 
 header('Location: 3-protected-page.php?userQuoteAdded=true');
+
+?>
