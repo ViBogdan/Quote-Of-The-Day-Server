@@ -2,10 +2,7 @@
 // Start the session
 session_start();
 
-// this could have code put into an include so you can password protect any page you want to. 
-
 // check session to see if they logged in:
-
 if(isset($_SESSION['isLoggedIn'])) {
 
     //do nothing, the user logged in.
@@ -13,7 +10,7 @@ if(isset($_SESSION['isLoggedIn'])) {
 } else {
 
   header('Location: index.php?error=isBlocked');  //if the isLoggedIn is not set, it means that they are trying to acces content without loggin in. We thus redirect them back to
-                                                    //the login page with isBlock set to true, where he is prompted to log in
+                                                  //the login page with isBlock set to true, where he is prompted to log in
 }
 
 ?>
@@ -38,10 +35,9 @@ if(isset($_SESSION['isLoggedIn'])) {
 </nav>
 
 
-
   <main>
 
-    <?php 
+<?php 
 
 //*********************************Connecting to DB**************************************
     	//$server = "db4free.net"; 
@@ -62,16 +58,17 @@ if(isset($_SESSION['isLoggedIn'])) {
 		};
 //***************************************************************************************
 
-    $searchAuthor = <<<SEARCHAUTHOR
+//we define the search bar for the user so that it can be used anytime we want to generate it in the page
+$searchElement = <<<SEARCHELEMENT
 
   	<form action="3.2-search-quote.php" method="POST">
   		<input type="text" placeholder="Search quote hint here..." name="searchElement">
   		<button type="submit" class="mySubmit">Search</button>
   	</form>	
 
-SEARCHAUTHOR;
+SEARCHELEMENT;
 
-		// Selecting by random the quote from our existing quote DB:
+		// If the user has searched for an element inside the qotes DB then we need to either return the results or signal that no results were generated
 
 		if (isset($_GET["foundQuote"]) && $_GET["foundQuote"] == "true") {
 
@@ -83,14 +80,14 @@ SEARCHAUTHOR;
 
 			};
 
-			echo $searchAuthor;
+			echo $searchElement;
 
 		} elseif (isset($_GET["foundQuote"]) && $_GET["foundQuote"] == "false") {
 
 			echo "<p>Unfortunately we did not find any quotes based on your search :( Maybe you can contribute with one :)</p>";
-			echo $searchAuthor;
+			echo $searchElement;
 
-		} else {
+		} else { // if the user has not searched for anything, we present him with a random quote from our existing DB
 
 		$sqlQueryDetails = "SELECT * FROM quotes"; //selecting everything from quotes db
 		$sqlQueryResult = $connection->query($sqlQueryDetails);
@@ -106,17 +103,12 @@ SEARCHAUTHOR;
 		$displayQuote = $quotes[array_rand($quotes)]; //we chose a quote to display as random from our quotes array
 		echo "<h2>The quote of the day is: </h2>";
 		echo "<p class='centered'> $displayQuote </p>";
-		echo $searchAuthor;
+		echo $searchElement;
 
 		$connection->close();
 
 		};
 
-    ?>
-
-
-
-    <?php
 
     // Generating a form where the user can contribute with a quote to the existing DB
 
@@ -126,7 +118,7 @@ SEARCHAUTHOR;
 
     } else {
 
-    $addForm = <<<ADDFORM
+$addForm = <<<ADDFORM
 
   	<form action="3.1-add-quote.php" method="POST" id="addQuote">
   		<textarea type="text" placeholder='Contribute with a quote here. Should look like: "Quote" -- Author' form="addQuote" class="addQuote" name="newQuote"></textarea>
@@ -140,7 +132,7 @@ ADDFORM;
 
   	};
 
-  	?>
+?>
   	
   </main>
 
