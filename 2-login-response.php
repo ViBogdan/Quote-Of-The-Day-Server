@@ -5,12 +5,6 @@ session_start();
 
 //****************************************Connecting to Database****************************************
 
-//defining my server connection elements (we can name the variables whatevere we want)
-//$server = "db4free.net"; 
-//$serverUser = "vibogdan";
-//$serverPass = "Formula.1";
-//$dbName = "quoteoftheday";
-
 $server = "blonze2d5mrbmcgf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; 
 $serverUser = "iykvnj95l595htba";
 $serverPass = "q14jj0odjyr8if3f";
